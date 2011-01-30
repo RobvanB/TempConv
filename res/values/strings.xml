@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Temp Conversion</string>
+    <string name="about">About</string>
+    <string name="fahrToCelciusLbl">Fahrenheit to Celsius</string>
+    <string name="celciusToFahrLbl">Celsius to Fahrenheit</string>
+    <string name="selectCelciusLbl">Select conversion</string>
+    <string name="tempOut">0</string>
+    <string name="tempIn">0</string>
+    <string name="tempLbl">Temp</string>
+</resources>
