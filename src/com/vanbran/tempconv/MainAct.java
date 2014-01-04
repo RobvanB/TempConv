@@ -23,17 +23,21 @@ public class MainAct extends Activity implements RadioGroup.OnCheckedChangeListe
     /** Called when the activity is first created. */
 	
 	private String spinnerArray[];
-	//RadioButton radioCtoF = (RadioButton)findViewById(R.id.celciusToFahr);	
+//	RadioButton radioCtoF = (RadioButton)findViewById(R.id.celciusToFahr);	
 	protected static RadioGroup  radioGrp  ;
 	int selectInt ;
 	
-    @SuppressWarnings("unchecked")
+	@Override
+	public void onCheckedChanged(RadioGroup arg0, int checkedId)
+	{
+		doCalc();
+	}
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) 
     {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main); 
-        
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
         try
         {
         	radioGrp = (RadioGroup)findViewById(R.id.convSelect);
@@ -43,7 +47,7 @@ public class MainAct extends Activity implements RadioGroup.OnCheckedChangeListe
 	        
 	        int i = -60 ;
 	        int c = 0   ;
-	           
+
 	        while (i < 161)
 	        {	        		
 	        	spinnerArray[c] = "" + i ;
@@ -51,38 +55,36 @@ public class MainAct extends Activity implements RadioGroup.OnCheckedChangeListe
 	        	c++;
 	        }
 	        
-	        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerArray);
+	        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerArray);
+	        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        spinner.setAdapter(adapter);
-	        spinner.setSelection(60, true);
-	    
-	        spinner.setOnItemSelectedListener(new OnItemSelectedListener()
-		        {
-		        	public void onItemSelected(AdapterView<?> arg0, View _view,
-		        	 int arg2, long arg3) 	
-		        	{
-		        		TextView selected 		= (TextView)_view;
-		        		selectInt     		= Integer.parseInt(selected.getText().toString()) ;
-		        		doCalc();
-		        	}	
-		        	public void onNothingSelected(AdapterView arg0) 
-		        	{
-		        		
-		        	}
-		        }
-	        ); //Close spinner.setOnItemSelectedListener()
+  	        spinner.setSelection(60, true);
+	        
+        	spinner.setOnItemSelectedListener(new OnItemSelectedListener()
+	        {
+	        	public void onItemSelected(AdapterView<?> arg0, View _view, int arg2, long arg3) 	
+	        	{
+	        		TextView selected 		= (TextView)_view;
+	        		selectInt     		= Integer.parseInt(selected.getText().toString()) ;
+	        		doCalc();
+	        	}	
+	        	public void onNothingSelected(AdapterView <?> arg0) 
+	        	{
+	        		
+	        	}
+	        }); //Close spinner.setOnItemSelectedListener()
         }
         catch(Exception ex)
         {
-        	Context context = getApplicationContext();
-    		CharSequence text = "onCreate: " + ex.toString();
-    		int duration = 500000 ; //Toast.LENGTH_LONG;
-    		
-    		Toast toast = Toast.makeText(context, text, duration);
-    		toast.show();
-        }
-    }     
-   
-    //Create a menu
+	      	Context context = getApplicationContext();
+	  		CharSequence text = "onCreate: " + ex.toString();
+	  		int duration = 500000 ; //Toast.LENGTH_LONG;
+	  		
+	  		Toast toast = Toast.makeText(context, text, duration);
+	  		toast.show();
+      }
+    }
+	  //Create a menu
     @Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -117,13 +119,7 @@ public class MainAct extends Activity implements RadioGroup.OnCheckedChangeListe
     	}
     	return true;
     }
-    
-    @Override
-    public void onCheckedChanged(RadioGroup arg0, int checkedId)
-    {
-    	doCalc();
-    }
-    
+
     private void doCalc()
 	{
     	RadioButton radioCtoF   = (RadioButton)findViewById(R.id.celciusToFahr);
@@ -158,4 +154,3 @@ public class MainAct extends Activity implements RadioGroup.OnCheckedChangeListe
         }
 	}
 }
-

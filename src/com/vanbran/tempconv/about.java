@@ -6,6 +6,7 @@ import android.webkit.WebView;
 
 public class about extends Activity
 {
+	/*
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -15,6 +16,7 @@ public class about extends Activity
 		
 		String url = "file:///android_asset/about.html";
 		webView.loadUrl(url) ;
-	}	
+	}
+	*/	
 }	
 
